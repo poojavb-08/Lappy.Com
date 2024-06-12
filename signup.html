@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('lin.jpg'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif; 
+            color: white; 
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease; 
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .error-message {
+            color: #FF0000;
+            margin-top: 5px;
+        }
+
+        .btn-primary {
+            background-color: goldenrod; 
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: darkgoldenrod; 
+        }
+
+       
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .fade-enter, .fade-leave {
+            transition: opacity 0.5s;
+        }
+        .fade-enter, .fade-leave.fade-leave-active {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="SignUpController">
+        <h2>Sign Up</h2>
+        <form name="signUpForm" ng-submit="signUp()">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" class="form-control" ng-model="user.username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" class="form-control" ng-model="user.email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" class="form-control" ng-model="user.phone" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" class="form-control" ng-model="user.password" required>
+                <div class="error-message" ng-show="passwordError">
+                    Password must be between 8 and 20 characters.
+                </div>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" ng-model="user.acceptTerms" required> I accept the Terms and Conditions
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <p style="text-align: center; margin-top: 10px;">
+                Already have an account? <a href="login.html">Sign in</a>
+            </p>
+        </form>
+    </div>
+    <script>
+        var app = angular.module('myApp', ['ngAnimate']);
+
+        app.controller('SignUpController', function ($scope, $window) {
+            $scope.user = {
+                username: '',
+                email: '',
+                phone: '',
+                password: '',
+                acceptTerms: false
+            };
+
+            $scope.signUp = function () {
+                if ($scope.signUpForm.$valid && !$scope.passwordError) {
+                    
+                    if (!$scope.user.acceptTerms) {
+                        alert('Please accept the Terms and Conditions.');
+                        return;
+                    }
+
+                  
+                    console.log('Username: ' + $scope.user.username);
+                    console.log('Email: ' + $scope.user.email);
+                    console.log('Phone: ' + $scope.user.phone);
+                    console.log('Password: ' + $scope.user.password);
+
+                    
+                    alert('Sign-up successful!');
+
+                    
+                    $window.location.href = 'home.html'; 
+                }
+            };
+
+            $scope.$watch('user.password', function () {
+                $scope.passwordError = !isPasswordValid($scope.user.password);
+            });
+
+            function isPasswordValid(password) {
+                
+                return password.length >= 8 && password.length <= 20;
+            }
+        });
+    </script>
+</body>
+</html>

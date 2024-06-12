@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+
+    <script>
+        angular.module('myApp', ['ngRoute']);
+        angular.module('myApp').config(function($routeProvider) {
+            $routeProvider
+            .when('/hp', {
+                templateUrl: 'a.html',
+                controller: 'hpCtrl'
+            })
+            .when('/dell', {
+                templateUrl: 'a.html',
+                controller: 'dellCtrl'
+            });
+});
+
+
+angular.module('myApp').controller("hpCtrl", function($scope) {
+    $scope.discount = {
+        name:'HP',
+        name_item: 'HP Wired On Ear Headphones With Mic noise cancelling',
+        description: 'Built-in Microphone|Comfortability and clarity all day long|Dimensions (cm) : 14.7 x 16 x 5.5',
+        discount_type: 'free'
+    };
+});
+
+angular.module('myApp').controller("dellCtrl", function($scope) {
+    $scope.discount = {
+        name:'Dell',
+        name_item: 'Wireless Mouse',
+        description: '2.4 Ghz with USB Nano Receiver, Optical Tracking, 12-Months Battery Life, Ambidextrous, Pc/Mac/Laptop - Black.',
+        discount_type: '50% offer',
+    };
+});
+    </script>
+    <style>
+        header {
+            background-color: rgb(7, 7, 43);
+            padding: 10px 0;
+        }
+        
+        header ul {
+            padding: 10px;
+            list-style: none; 
+        }
+        
+        header ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+        
+        header ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        header button {
+            display: inline-block;
+            margin-left: 20px;
+            padding: 10px;
+            width: 10%;
+            background-color: #f7ef0b;
+            color: rgb(10, 7, 7);
+            border: none;
+            cursor: pointer;
+        }
+        
+        section {
+            background-color: rgb(63, 63, 72);
+            text-align: center;
+            color: white;
+        }
+        
+        section .top {
+            padding-top: 2%;
+        }
+        
+        section .top h2 {
+            padding-top: 10%;
+        }
+        
+        section .picture-container {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 8%;
+        }
+        
+        section .picture-item {
+            text-align: center;
+        }
+        
+        section .picture-item img {
+            width: 80%;
+            height: auto;
+            padding-left: 2%;
+        }
+        
+        section .blur {
+            background-image: url("blur pic.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            padding-bottom: 10%;
+            font-size: x-large;
+        }
+        
+        section .theory-container {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 10%;
+            align-content: flex-start;
+        }
+        
+        section .th {
+            text-align: left;
+            padding-left: 5%;
+            padding-bottom: 5%;
+        }
+        
+        footer {
+            background-color: rgb(7, 7, 43);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        footer p {
+            margin: 0;
+        }
+    </style>
+    <title>Lappy.com</title>
+    <link rel="icon" type="image/x-icon" href="lappy logo.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+   
+</head>
+<body>
+<header>
+    <img src="lappy logo.png" alt="Logo" style="width: 100px; height: 100px; padding-top: 2%; padding-left: 2%;">
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="brands.html">Brands</a></li>
+        <li><a href="storepolicies.html">Store Policies</a></li>
+        <li><a href="customer service.html">Customer Services</a></li>
+        <li><a href="Special Offers.html">Special Offers</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="login.html"><button type="submit">Login</button></a></li>
+        <li><a href="signup.html"><button type="submit">SignUp</button></a></li>
+    </ul>
+</header>
+<section>
+    <div class="top">
+        <h2>EXCLUSIVE OFFERS</h2>
+        <p>Lappy.com is pleased to provide these special offers to our customers. We generally receive high demands for our sale products, so be sure to get in touch and have us hold onto your order for you.</p>
+        <div class="picture-container">
+            <div class="picture-item">
+                <img src="harddrives.png" alt="Picture 1">
+                <h3>PORTABLE HARD DRIVES</h3>
+                <p>Incredible Savings</p>
+            </div>
+            <div class="picture-item">
+                <img src="keyboard.png" alt="Picture 2">
+                <h3>WIRELESS KEYBOARDS</h3>
+                <p>Best Bargains</p>
+            </div>
+            <div class="picture-item">
+                <img src="monitors.png" alt="Picture 3" style="width: 90%;">
+                <h3>HD MONITORS</h3>
+                <p>Discount Central</p>
+            </div>
+        </div>
+        <div ng-app="myApp">
+            <script type="text/ng-template" id="a.html">
+                <h2>{{discount.name}}</h2>
+              <h3>Name of the item: {{discount.name_item}}</h3>
+              <p>Description: {{discount.description}}</p>
+              <p>Discount Type: {{discount.discount_type}}</p>
+             
+            </script>
+            <h1>Discounts in our Lappy.com</h1>
+              <b><a href="#!/hp">HP</a></b>
+              ||||
+              <b><a href="#!/dell">Dell</a></b>
+            <div class="discount-container">
+              <div class="discount-view" ng-view></div>
+            </div>
+          </div>
+    </div>
+
+</section>
+<footer>
+    <p>poojadharshinivb@student.tce.edu</p>
+    <p>mayasree@student.tce.edu</p>
+    <p>&copy;2023 by Lappy.com.</p>
+</footer>
+</body>
+</html>

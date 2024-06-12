@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+         var app = angular.module('myApp', []);
+         app.controller('ctrl',ctrl);
+         ctrl.$inject=['$scope'];
+         function ctrl($scope){
+            $scope.choices=["India","United States","Australia","Europe"];
+            $scope.email="";
+            $scope.content="";
+            $scope.checked=false;
+         }
+
+        
+    </script>
+    
+    <style>
+        header {
+            background-color: rgb(7, 7, 43);
+            padding: 10px 0;
+        }
+        
+        header ul {
+            padding: 10px;
+            list-style: none; 
+        }
+        
+        header ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+        
+        header ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        header button {
+            display: inline-block;
+            margin-left: 20px;
+            padding: 10px;
+            width: 10%;
+            background-color: #f7ef0b;
+            color: rgb(10, 7, 7);
+            border: none;
+            cursor: pointer;
+        }
+        
+        section {
+            background-color: rgb(63, 63, 72);
+            text-align: center;
+            color: white;
+        }
+        
+        section .top {
+            padding-top: 2%;
+        }
+        
+        section .top h2 ,p{
+            align-items: center;
+        }
+        
+        section .content {
+          margin-top: 5%;
+          width: auto;
+          align-items: center;
+          background-color: rgba(7, 7, 43, 0.694);
+          padding: 10%;
+        }
+
+        section .content label,.content input,.content button {
+          display: block;
+          margin-bottom: 10px;
+          width: 100%;
+        }
+
+        .container input[type="email"],
+        .container input[type="text"] {
+          padding: 5px;
+        }
+
+        .container button {
+          padding: 10px;
+          width: 100%;
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          cursor: pointer;
+        }
+        
+        footer {
+            background-color: rgb(7, 7, 43);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        footer p {
+            margin: 0;
+        }
+    </style>
+    <title>Lappy.com</title>
+    <link rel="icon" type="image/x-icon" href="lappy logo.png">
+</head>
+<body ng-app="myapp">
+<header>
+    <img src="lappy logo.png" alt="Logo" style="width: 100px; height: 100px; padding-top: 2%; padding-left: 2%;">
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="brands.html">Brands</a></li>
+        <li><a href="storepolicies.html">Store Policies</a></li>
+        <li><a href="customer service.html">Customer Services</a></li>
+        <li><a href="Special Offers.html">Special Offers</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="login.html"><button type="submit">Login</button></a></li>
+        <li><a href="signup.html"><button type="submit">SignUp</button></a></li>
+    </ul>
+</header>
+<section>
+    <div class="top">
+        <h2>FEEDBACK</h2>
+        <p>Sharing your shopping experience with us will make our service to be improved and qualified. </p>
+    </div>
+    <div class="content" ng-controller="ctrl">
+        <h3>Give your feedback!</h3>
+        <form name="form">
+            <form name="form">
+                <label>Email:</label>
+                <input type="email" ng-model="email" required><br><br>
+                <label>Feedback:</label>
+                <textarea ng-model="content" required minlength="10" maxlength="30"></textarea><br><br>
+                <label>Country:</label>
+                <select ng-model="selectedCountry" ng-options="choice for choice in choices">
+                    <option value="">Select a country</option>
+                    <option ng-repeat="choice in choices | filter:search" value="{{choice}}">{{choice}}</option>
+                </select>
+                <label>Please read the guidelines <a href="https://www.bajajfinserv.in/laptop-buying-guide">here</a><input type="checkbox" ng-model="checked"></label>
+                <button ng-disabled="!checked" ng-click="submitFeedback()">Submit</button>
+            </form>
+        </form>
+
+    </div>
+</section>
+<footer>
+    <p>poojadharshinivb@student.tce.edu</p>
+    <p>mayasree@student.tce.edu</p>
+    <p>&copy;2023 by Lappy.com.</p>
+</footer>
+</body>
+</html>

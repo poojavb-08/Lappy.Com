@@ -1,0 +1,206 @@
+<!DOCTYPE html >
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   
+  <script>
+    var app=angular.module("myapp");
+    app.controller("mycontroller",function($scope){
+      $scope.user={
+        phone:{
+          required:true,
+          minlength:10,
+          maxlength:10
+        }
+      };
+    });
+  </script>
+    <style>
+        header{
+            background-color: rgb(7, 7, 43);
+            padding: 10px 0px;
+        }
+        header ul {  
+            padding: 10px;
+        }
+        header ul li {
+            display: inline;
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+        header ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        header button {
+          display: inline-block;
+          margin-bottom: 10px;
+          margin-left: 20px;
+          width: 100%;
+          padding: 10px;
+          width:10%;
+          background-color: #f7ef0b;
+          color: rgb(10, 7, 7);
+          border: none;
+          cursor: pointer;
+        }
+        section{
+            background-color: rgb(63, 63, 72);
+            float:right;
+            text-align: center;
+        }
+        section .top{
+            text-align: center;
+            color: white;
+            background-color: rgb(63, 63, 72);
+        }
+        section .top h2{
+            padding-top: 10%;
+        }
+        section .picture-container {
+             display: flex; 
+             background-color: rgb(63, 63, 72);
+             justify-content: space-between; 
+             padding-top: 10%;
+             color: white;
+        }
+        section .picture-item {
+              text-align: center; 
+            }
+
+        section .picture-item img {
+            width: 80%;
+            height: auto; 
+            padding-left: 5%;
+         }
+         section .blur {
+            background-image: url("blur pic.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            size: 100%;
+            padding-bottom: 10%;
+            color: black;
+            font-size: x-large;
+         }
+         section .theory-container{
+          display: flex; 
+             background-color: rgb(63, 63, 72);
+             justify-content: space-between; 
+             padding-top: 10%;
+             color: white;
+             align-content: flex-start;
+         }
+         section .th {
+              text-align:left; 
+              padding-left: 5%;
+              padding-bottom: 5%;
+            }
+        footer{
+          background-color: rgb(7, 7, 43);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        footer p{
+          margin: 0;
+        }
+        </style>
+        <title>Lappy.com</title>
+        <link rel="icon" type="image/x-icon" href="lappy logo.png">
+</head>
+<body ng-app ="myapp">
+<header>
+<img src="lappy logo.png" style="width:100px;height:100px;padding-top: 2%;padding-left: 2%;">
+<ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="brands.html">Brands</a></li>
+    <li><a href="storepolicies.html">Store Policies</a></li>
+    <li><a href="customer service.html">Customer Services</a></li>
+    <li><a href="Special Offers.html">Special Offers</a></li>
+    <li><a href="feedback.html">Feedback</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="login.html"><button type="submit">Login</button></a></li>
+    <li><a href="signup.html"><button type="submit">SignUp</button></a></li>
+</ul>
+</header>
+<section>
+  <div class="top">
+    <h2>HOW WE CAN HELP</h2>
+    <p>Customer satisfaction is essential to our team at Lappy.com. That's why we're here to handle any issues or queries you may have, and ensure you get the most out of your purchase and shopping experience.</p>
+<div class="picture-container">
+    <div class="picture-item">
+      <img src="customer service img1.png" alt="Picture 1">
+      <h3>LOCALLY OWNED</h3>
+      <p>Second to None</p>
+    </div>
+    <div class="picture-item">
+      <img src="customer service img2.png" alt="Picture 2">
+      <h3>FAMILY BUSINESS</h3>
+      <p>Quality Solutions</p>
+    </div>
+    <div class="picture-item">
+      <img src="cust img3.png" alt="Picture 3" style="width: 90%;">
+      <h3>CREDIT, CASH, CHECK ACCEPTED</h3>
+      <p>Sets Us Apart</p>
+    </div>
+  </div>
+  <div class="blur">
+    <h2><b>HELP CENTER</b></h2>
+    <p>Before You Shop</p>
+  </div>
+  <div class="theory-container">
+    <div class="th">
+      <h1>WHAT IS YOUR RETURN POLICY?</h1>
+      <p>The timeframe of return can range from 14 days to 30 days or more from the date of purchase.The laptop should be in its original condition with all accessories, manuals, and packaging included. Customers are usually required to provide a reason for the return. Common reasons include receiving a defective product, not meeting expectations, or changing one's mind.</p> </div>
+    <div class="th">
+      <h1>
+        DO YOU PROVIDE DELIVERY SERVICES FOR ALL PRODUCTS?</h1>
+        <p>We provide delivery services for all products in our website. The delivery fee ranges depending upon the distance of the product location from your location. Some products may also have free delivery charges. If any product is broken because of poor delivery, it is returnable by specifying the reason.</p>
+      </div>
+    <div class="th">
+      <h1>CAN I PRE-ORDER A SALE ITEM?</h1>
+      <p> During major sale events like Black Friday, Cyber Monday, or holiday sales,Lappy.com offer pre-orders to allow customers to secure their desired laptops at the sale price before the event starts. This can be especially beneficial if the sale is expected to be in high demand and items might sell out quickly.</p>
+    </div>
+  </div>
+  <img src="call img.jpg" style="height: 500px;width: 100%;">
+  <h1>CONTACT SUPPORT</h1>
+  <p>How can we support?</p>
+  <div class="container" ng-controller="mycontroller">
+    <form name="formData">
+      <label>First name</label>
+      <input type="text" ng-model="formData.firstName" required>
+
+      <label>Last name</label>
+      <input type="text" ng-model="formData.lastName" required><br><br>
+
+      <label>Email</label>
+      <input type="email" ng-model="formData.email" required>
+
+      <label>Phone</label>
+      <input type="text" name="phone" ng-model="formData.phone" maxlength="10" minlength="10">
+      <br><br>
+      <label>Choose an Issue</label>
+      <select id="selectOption">
+        <option value="Option1">Logging into account</option>
+        <option value="option2">Copleting payment</option>
+        <option value="option3">Viewing content</option>
+        <option value="option4">Uploading files</option>
+        <option value="option5">Other</option>
+      </select>
+      <br><br>
+      <label>Let us know what help you wanted from us..</label>
+      <textarea type="text"></textarea>
+      <br><br>
+      <button type="submit">Submit</button>
+  </form>
+</section>
+<footer>
+  <p>poojadharshinivb@student.tce.edu</p>
+  <p>mayasree@student.tce.edu</p>
+  <p>&copy;2023 by Lappy.com.</p>
+</footer>
+</body>
+</html>

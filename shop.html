@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+
+
+    <script>
+        var app = angular.module('myApp', ['ngRoute']);
+app.config(function ($routeProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: 'shop.html',
+            controller: 'ctrl as list1'
+        })
+        .when('/cart', {
+            templateUrl: 'cart.html',
+            controller: 'CartController as cartCtrl'
+        })
+        .otherwise({ redirectTo: '/' });
+});
+
+app.controller('ctrl', ctrl);
+app.directive('mydirective', mydirective);
+app.factory('myFactory', myFactory);
+app.service('myservice', myService);
+
+function mydirective() {
+    var ddo = {
+        template: [
+            '<h3>{{ item.brand }} || {{ item.name }}</h3>' +
+            '<img ng-src="{{ item.imageUrl }}" alt="{{ item.name }}" style="width: 100px; height: 100px;">' +
+            '<p>Category: {{ item.category }}</p>' +
+            '<p>Description:</p>' +
+            '<div ng-repeat="desc in item.description">{{ desc }}</div>' +
+            '<p>Price: {{ item.price }}</p>' +
+            '<button ng-href="{{ item.AmazonPrice }}"><a target="_blank" href="{{ item.AmazonPrice }}">Amazon</a></button>' +
+            '<button ng-href="{{ item.FlipkartPrice }}"><a target="_blank" href="{{ item.FlipkartPrice }}">Flipkart</a></button>'
+        ].join('')
+    };
+    return ddo;
+}
+
+function myFactory() {
+    var factory = function () {
+        return new myService();
+    };
+    return factory;
+}
+
+function myService() {
+    var service = this;
+    var items = [
+    {
+        brand: 'Dell',
+        name: 'Inspiron',
+        imageUrl: 'dell_inspiron.png',
+        category: 'Versatile Performance',
+        price: 55500,
+        description: [
+            'Perform personal & home office tasks',
+            'Stream, browse, and multitask',
+            'Video chat with enhanced audio & visuals',
+            'Create social content'
+        ],
+        AmazonPrice:'https://www.amazon.in/Dell-Inspiron-15-inch-Windows-i5-1235U/dp/B0BH4SCYQ3/ref=sr_1_1_sspa?crid=2W5DGT2IIW47C&keywords=dell+inspiron+core+i5+12th+gen+16gb+ram&nsdOptOutParam=true&qid=1697047497&sprefix=dell+inspiron+core+i5+12th+gen+16gb+ram%2Caps%2C309&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1',
+        FlipkartPrice: 'https://www.flipkart.com/dell-inspiron-core-i5-12th-gen-1235u-8-gb-512-gb-ssd-windows-11-home-new-15-laptop-thin-light/p/itm23d84e15561c4?pid=COMGJ75HKASCXKBH&lid=LSTCOMGJ75HKASCXKBH8NE4NC&marketplace=FLIPKART&q=dell+inspiron&store=6bo%2Fb5g&srno=s_1_10&otracker=search&otracker1=search&fm=organic&iid=ea4c1b73-d98e-47ea-b88f-c3b7249300a4.COMGJ75HKASCXKBH.SEARCH&ppt=hp&ppn=homepage&ssid=ibbdxf0gog0000001697047090500&qH=9f800ccf0541f6fb'
+    },
+    {
+        brand: 'Dell',
+        name: 'Vostro',
+        imageUrl: 'dell_vostro.png',
+        category: 'Business Productivity',
+        price: 55990,
+        description: [
+            'Protect data with essential security',
+            'Power business applications',
+            'Collaborate with video conferencing'
+        ],
+        AmazonPrice:'https://www.amazon.in/Dell-Vostro-5625-40-64Cms-D552266WIN9S/dp/B0BHYS6B6L/ref=sr_1_3?crid=XOQBZJ3OK5N5&keywords=dell+vostro&qid=1697047617&sprefix=dell+vostr%2Caps%2C333&sr=8-3',
+        FlipkartPrice:'https://www.flipkart.com/dell-vostro-core-i5-12th-gen-1240p-8-gb-512-gb-ssd-windows-11-home-5620-thin-light-laptop/p/itm7977c9f4dbcfb?pid=COMGH8YQSUUZTXWG&lid=LSTCOMGH8YQSUUZTXWGASHYD8&marketplace=FLIPKART&q=dell+vostro&store=6bo%2Fb5g&srno=s_1_4&otracker=search&otracker1=search&fm=Search&iid=dfddb3cc-5fdb-411e-bb7b-ea7d6ee10fdc.COMGH8YQSUUZTXWG.SEARCH&ppt=sp&ppn=sp&ssid=phuzilcqgw0000001697047680205&qH=0a9894175694f560'
+
+    },
+    {
+        brand: 'Dell',
+        name: 'XPS',
+        imageUrl: 'dell_XPS.png',
+        category: 'Creators and Creativity',
+        price: 95000,
+        description: [
+            'Multitask between intensive programs',
+            'Produce video, photography, and music',
+            'Create & edit digital content',
+            'Be productive anywhere'
+        ],
+        AmazonPrice:'https://www.amazon.in/Dell-XPS-9315-i7-1250U-ICC-C786506WIN8/dp/B0BGJ7YCTF/ref=sr_1_4?crid=1953TK1Z19LM5&keywords=Dell+Xps&qid=1697369105&sprefix=dell+xps%2Caps%2C285&sr=8-4',
+        FlipkartPrice:'https://www.flipkart.com/dell-xps-core-i5-10th-gen-1035g1-8-gb-512-gb-ssd-windows-10-home-9300-thin-light-laptop/p/itmbdb9070446946?pid=COMFTC4YBSK8WZQC&lid=LSTCOMFTC4YBSK8WZQCYL4O3P&marketplace=FLIPKART&q=dell+xps+&store=search.flipkart.com&srno=s_1_1&otracker=search&otracker1=search&fm=Search&iid=66607063-69c0-4e93-a2da-5c8d422b38dd.COMFTC4YBSK8WZQC.SEARCH&ppt=pp&ppn=pp&ssid=jf7w0qlocw0000001697047742504&qH=fad8ea1c0c8719d4'
+
+    },
+    {
+        brand: 'HP',
+        name: 'Pavilion',
+        imageUrl: 'hp_pavilion.png',
+        category: 'Business Productivity',
+        price: 84500,
+        description: [
+            '12th Generation Intel® Core™ i7 processor',
+            'Windows 11 Home ',
+            '35.6 cm (14) diagonal IPS Brightview 1920X1080 & Intel® Iris® Xᵉ Graphics',
+            'Weighs: 1.41 kg / HD Webcam / Backlit Keyboard / B&O speakers / Fingerprint reader'
+        ],
+        FlipkartPrice:'https://www.flipkart.com/hp-pavilion-core-i5-12th-gen-1235u-8-gb-512-gb-ssd-windows-11-home-14-ek0086tu-thin-light-laptop/p/itm2969c54a9d446?pid=COMGHMH6YWR6B54T&lid=LSTCOMGHMH6YWR6B54T30BRZQ&marketplace=FLIPKART&q=hp+pavilion&store=6bo%2Fb5g&srno=s_1_5&otracker=search&otracker1=search&fm=Search&iid=7a917dc8-94c7-47e7-bb5b-88d922bd01dd.COMGHMH6YWR6B54T.SEARCH&ppt=sp&ppn=sp&ssid=wud4xpolwg0000001697047959832&qH=aa80261108f076e0',
+        AmazonPrice:'https://www.amazon.in/HP-Pavilion-Micro-Edge-Graphics-14-dv2053TU/dp/B0B1MDHJCC/ref=sr_1_3?crid=NWUGUOA4WUBT&keywords=Hp+pavilion&qid=1697369176&sprefix=hp+pavilion%2Caps%2C264&sr=8-3'
+
+    },
+    {
+        brand: 'HP',
+        name: 'Victus',
+        imageUrl: 'hp_victus.png',
+        category: 'Creators and Creativity',
+        price: 104900,
+        description: [
+            '13th Generation Intel® Core™ i5 processor',
+            '39.6 cm (15.6) diagonal, FHD 144 Hz refresh rate, 9 ms response time display',
+            '512 GB PCIe® Gen4 NVMe™ Hard drive',
+            'Backlit keyboard with numeric keypad/HP Wide Vision 720p HD camera/B&O Speakers'
+        ],
+        AmazonPrice:'https://www.amazon.in/hp-i5-12450h-15-6-inch-response-fa0666tx/dp/b0c2hzym87/ref=sr_1_3?crid=3tz9n74jv7ycv&keywords=hp+victus&qid=1697048135&sprefix=hp+victu%2caps%2c379&sr=8-3',
+        FlipkartPrice:'https://www.flipkart.com/hp-victus-core-i5-12th-gen-12450h-16-gb-1-tb-ssd-windows-11-home-4-gb-graphics-nvidia-geforce-rtx-2050-50-tgp-fa1145tx-gaming-laptop/p/itme3578e9dc1aa9?pid=COMGSV4R5DAZYSME&lid=LSTCOMGSV4R5DAZYSMEV31SPN&marketplace=FLIPKART&q=hp+victus&store=6bo%2Fb5g&srno=s_1_3&otracker=AS_QueryStore_OrganicAutoSuggest_1_4_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_4_na_na_ps&fm=Search&iid=94f6589b-eacb-401d-863d-10c06d248053.COMGSV4R5DAZYSME.SEARCH&ppt=pp&ppn=pp&ssid=ropw9x1l1c0000001697048074273&qH=8fa28d763aa5c003'
+
+    },
+    {
+        brand: 'HP',
+        name: 'Envy',
+        imageUrl: 'hp_envy.png',
+        category: 'Versatile Performance',
+        price: 104900,
+        description: [
+            '13th Generation Intel® Core™ i7 processor',
+            '39.6 cm (15.6) diagonal FHD display',
+            'NVIDIA® GeForce RTX™ 3050 4GB',
+            '16 GB LPDDR5-5500 MHz RAM (onboard)'
+        ],
+        AmazonPrice:'https://www.amazon.in/HP-Creators-i5-1235U-Micro-Edge-15-ew0021TX/dp/b0brsj3c4v/ref=sr_1_4?crid=32xh9q9o7vbcv&keywords=hp+envy&qid=1697048291&sprefix=hp+envy%2caps%2c309&sr=8-4',
+        FlipkartPrice:'https://www.flipkart.com/hp-envy-x360-creator-intel-evo-core-i5-12th-gen-1230u-16-gb-512-gb-ssd-windows-11-home-13-bf0121tu-thin-light-laptop/p/itm7c472a05300e5?pid=COMGH47NWT4HZFYP&lid=LSTCOMGH47NWT4HZFYPJT5O1U&marketplace=FLIPKART&q=hp+envy&store=search.flipkart.com&srno=s_1_3&otracker=search&otracker1=search&fm=Search&iid=cbf0b2e6-45e1-417d-a6e3-edb4497aee13.COMGH47NWT4HZFYP.SEARCH&ppt=pp&ppn=pp&ssid=uc0qmhzyhc0000001697048327752&qH=656b0f3eb3ecc6e7'
+
+    }
+];
+    service.getItems = function () {
+        return items;
+    };
+}
+
+ctrl.$inject = ['myFactory'];
+function ctrl(myFactory) {
+    var list1 = this;
+    var shoppingList = myFactory();
+    list1.items = shoppingList.getItems();
+    list1.cart = [];
+    list1.currentPage = 1;
+    list1.itemsPerPage = 3;
+    list1.totalPages = Math.ceil(list1.items.length / list1.itemsPerPage);
+
+    list1.getPaginatedItems = function () {
+        var start = (list1.currentPage - 1) * list1.itemsPerPage;
+        return list1.items.slice(start, start + list1.itemsPerPage);
+    };
+
+    list1.nextPage = function () {
+        if (list1.currentPage < list1.totalPages) {
+            list1.currentPage++;
+        }
+    };
+
+    list1.previousPage = function () {
+        if (list1.currentPage > 1) {
+            list1.currentPage--;
+        }
+    };
+
+    list1.getCart = function () {
+        return list1.cart;
+    };
+
+    list1.addToCart = function (item) {
+        list1.cart.push(item);
+    };
+}
+
+    </script>
+    <style>
+        header {
+            background-color: rgb(7, 7, 43);
+            padding: 10px 0;
+        }
+        
+        header ul {
+            padding: 10px;
+            list-style: none; 
+        }
+        
+        header ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+        
+        header ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        header button {
+            display: inline-block;
+            margin-left: 20px;
+            padding: 10px;
+            width: 10%;
+            background-color: #f7ef0b;
+            color: rgb(10, 7, 7);
+            border: none;
+            cursor: pointer;
+        }
+        
+        section {
+            background-color: rgb(63, 63, 72);
+            text-align: center;
+            color: white;
+        }
+        section .button{
+            float: right;
+            
+        }
+        .product-section {
+        text-align: center; 
+    }
+
+    .search-input {
+        margin-bottom: 10px; 
+        float: right;
+        padding-right: 10%;
+    }
+
+    .product {
+        display: inline-block; 
+        vertical-align: top; 
+        width: 30%; 
+        margin: 10px; 
+        padding: 10px; 
+        border: 1px solid #ccc; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    }
+
+    .pagination {
+        margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            align-items: center;
+        }
+        
+
+        footer {
+            background-color: rgb(7, 7, 43);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        footer p {
+            margin: 0;
+        }
+    </style>
+    <title>Lappy.com</title>
+    <link rel="icon" type="image/x-icon" href="lappy logo.png">
+</head>
+<body ng-app="myApp">
+<header>
+    <img src="lappy logo.png" alt="Logo" style="width: 100px; height: 100px; padding-top: 2%; padding-left: 2%;">
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="brands.html">Brands</a></li>
+        <li><a href="storepolicies.html">Store Policies</a></li>
+        <li><a href="customer service.html">Customer Services</a></li>
+        <li><a href="Special Offers.html">Special Offers</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="login.html"><button type="submit">Login</button></a></li>
+        <li><a href="signup.html"><button type="submit">SignUp</button></a></li>
+    </ul>
+</header>
+<section ng-controller="ctrl as list1">
+    Search : <input type="text" ng-model="list1.search">
+    <div class="product" ng-repeat="item in list1.getPaginatedItems() | filter: list1.search">
+        <mydirective item="item"></mydirective>
+    </div>
+
+    <div class="pagination">
+        <button ng-click="list1.previousPage()" ng-disabled="list1.currentPage == 1">Previous</button>
+        <span>Page {{list1.currentPage}} of {{list1.totalPages}}</span>
+        <button ng-click="list1.nextPage()" ng-disabled="list1.currentPage == list1.totalPages">Next</button>
+    </div>
+</section>
+
+<footer>
+    <p>poojadharshinivb@student.tce.edu</p>
+    <p>mayasree@student.tce.edu</p>
+    <p>&copy;2023 by Lappy.com.</p>
+</footer>
+</body>
+</html>
